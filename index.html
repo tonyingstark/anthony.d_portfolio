@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anthony Desamparado — QA Engineer & Playwright Automation</title>
+<meta name="description" content="Anthony Desamparado is a QA engineer with 8+ years of experience in Playwright test automation, manual and regression testing — plus GoHighLevel funnels and UGC video.">
+<meta property="og:title" content="Anthony Desamparado — QA Engineer">
+<meta property="og:description" content="8+ years in QA: Playwright automation, E2E and regression testing, plus GHL builds and UGC video.">
+<meta property="og:image" content="assets/anthony.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#e6e8e3;
+    --paper:#f2f2ef;
+    --ink:#111312;
+    --ink-2:#4a4f4b;
+    --muted:#7d847e;
+    --sage:#8f9b8d;
+    --sage-2:#6f7c6e;
+    --sage-3:#4f5b4f;
+    --line:rgba(17,19,18,.12);
+    --radius:28px;
+    --sans:"Manrope",system-ui,sans-serif;
+    --serif:"Instrument Serif",Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--page);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  em,.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+  .sheet{background:var(--paper);border-radius:36px;margin:20px auto;max-width:1280px;padding:20px;overflow:hidden}
+
+  /* ---------- NAV ---------- */
+  .nav{position:fixed;top:36px;left:50%;transform:translateX(-50%);z-index:50;
+    background:#0b0c0b;color:#fff;border-radius:999px;display:flex;align-items:center;gap:36px;
+    padding:8px 8px 8px 22px;width:min(640px,calc(100% - 40px));justify-content:space-between;
+    box-shadow:0 10px 30px rgba(0,0,0,.18)}
+  .logo{font-weight:700;letter-spacing:-.03em;font-size:17px}
+  .logo sup{font-size:.55em;font-weight:500;margin-left:1px}
+  .nav ul{display:flex;gap:22px;list-style:none;font-size:13px;color:#cfd3cf}
+  .nav ul a:hover{color:#fff}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);border-radius:999px;
+    padding:11px 20px;font-size:13px;font-weight:600;transition:transform .2s,background .2s;border:0;cursor:pointer;font-family:inherit}
+  .btn:hover{transform:translateY(-1px);background:#e9ece8}
+  .btn.dark{background:var(--ink);color:#fff}
+  .btn.dark:hover{background:#2a2e2b}
+  .menu-btn{display:none;background:none;border:0;color:#fff;width:42px;height:42px;cursor:pointer}
+  .menu-btn span{display:block;width:20px;height:1.5px;background:#fff;margin:5px auto;transition:.25s}
+  .mobile-menu{display:none}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;border-radius:var(--radius);min-height:min(760px,92vh);overflow:hidden;color:#fff;
+    background:
+      radial-gradient(120% 90% at 60% 30%, rgba(255,255,255,.18), transparent 60%),
+      linear-gradient(160deg,#9aa697 0%,#7f8b7d 45%,#5d695c 100%)}
+  .hero-photo{position:absolute;inset:0;background:url("assets/hero.jpg") center 25%/cover no-repeat;}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(40,48,40,.55) 0%,rgba(40,48,40,.05) 55%,rgba(40,48,40,.35) 100%)}
+  /* light streaks, echoing the motion-blur in the reference */
+  .streaks{position:absolute;left:-10%;right:-10%;top:30%;height:120px;z-index:1;pointer-events:none;filter:blur(1.5px);mix-blend-mode:screen}
+  .streaks i{position:absolute;left:0;right:0;height:2px;border-radius:2px;opacity:.75;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.9) 30%,rgba(255,255,255,.9) 70%,transparent);
+    animation:streak 7s ease-in-out infinite}
+  .streaks i:nth-child(1){top:10px}
+  .streaks i:nth-child(2){top:28px;opacity:.5;animation-delay:-1.2s}
+  .streaks i:nth-child(3){top:44px;height:3px;background:linear-gradient(90deg,transparent,rgba(255,150,90,.85) 40%,rgba(255,200,150,.6) 65%,transparent);animation-delay:-2.4s}
+  .streaks i:nth-child(4){top:62px;opacity:.45;animation-delay:-3.1s}
+  .streaks i:nth-child(5){top:84px;opacity:.3;animation-delay:-4.5s}
+  @keyframes streak{0%,100%{transform:translateX(-4%) scaleX(.96)}50%{transform:translateX(4%) scaleX(1.04)}}
+  @media (prefers-reduced-motion:reduce){.streaks i{animation:none}}
+
+  .hero-inner{position:relative;z-index:2;min-height:inherit;display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px;padding:120px 48px 40px}
+  .plus{position:absolute;z-index:2;top:52%;font-weight:300;font-size:20px;opacity:.75}
+  .wordmark{font-weight:600;letter-spacing:-.06em;line-height:.85;font-size:clamp(64px,11vw,148px)}
+  .wordmark sup{font-size:.32em;font-weight:500;vertical-align:top;position:relative;top:.15em;margin-left:4px}
+  .tag{display:block;text-align:right;font-weight:300;font-size:clamp(16px,1.6vw,20px);margin-top:10px;max-width:max-content;margin-left:auto;padding-right:6px}
+  .hero-copy{max-width:420px;margin-top:56px;font-weight:300;font-size:clamp(15px,1.3vw,17px);color:rgba(255,255,255,.9)}
+  .hero-copy b{font-weight:400;color:rgba(255,255,255,.6)}
+  .hero-side{display:flex;flex-direction:column;align-items:flex-end;gap:18px}
+  .stack{display:flex}
+  .stack span{width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.85);margin-left:-12px;display:grid;place-items:center;
+    font-size:11px;font-weight:700;background:#0d0f0d;color:#fff;letter-spacing:-.02em}
+  .stack span:nth-child(2){background:#2d3a2d}.stack span:nth-child(3){background:#55624f}.stack span:nth-child(4){background:#e9ece8;color:var(--ink)}
+  .side-cap{font-size:13px;font-weight:300;opacity:.9}
+  .glass{width:250px;border-radius:20px;padding:20px;position:relative;overflow:hidden;
+    background:linear-gradient(160deg,rgba(80,110,90,.55),rgba(40,60,48,.75));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.18)}
+  .glass h3{font-weight:400;font-size:21px;line-height:1.25;letter-spacing:-.01em}
+  .glass .row{display:flex;justify-content:space-between;align-items:center;margin-top:90px}
+  .glass small{font-size:11px;opacity:.75}
+  .photo-card{width:240px;padding:10px 10px 12px;background:rgba(242,242,239,.92);color:var(--ink);border-color:rgba(255,255,255,.6)}
+  .photo-card img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center 30%;border-radius:14px;background:#fff}
+  .photo-card h3{font-size:18px;margin:14px 8px 0}
+  .photo-card .row{margin:12px 2px 0 8px}
+
+  /* ---------- SECTION BASICS ---------- */
+  section{padding:120px 0 40px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
+  .eyebrow::before{content:"";width:14px;height:14px;border-radius:50%;border:1.5px solid currentColor;
+    background:radial-gradient(circle,currentColor 2px,transparent 2.5px)}
+  .h-big{font-weight:500;letter-spacing:-.035em;line-height:1.08;font-size:clamp(34px,4.6vw,60px)}
+  .h-big em{font-size:1.12em;line-height:.9}
+  .head-row{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start;margin-bottom:56px}
+
+  /* ---------- ABOUT ---------- */
+  .quote{text-align:right}
+  .about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;margin-top:64px;padding-left:80px}
+  .portrait{border-radius:22px;aspect-ratio:4/4.4;position:relative;overflow:hidden;
+    background:linear-gradient(160deg,#d6d9d4,#b9bfb7)}
+  .portrait{background:#fff}
+  .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom}
+  .ph-label{position:absolute;left:16px;bottom:14px;font-size:12px;color:var(--ink-2);background:rgba(255,255,255,.7);padding:4px 10px;border-radius:99px}
+  .about-text p{color:var(--ink-2);font-size:16px;margin-bottom:18px;max-width:440px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px;max-width:440px}
+  .stat{border-top:1px solid var(--line);padding-top:14px}
+  .stat b{display:block;font-size:34px;font-weight:500;letter-spacing:-.04em;line-height:1}
+  .stat span{font-size:12px;color:var(--muted)}
+
+  /* ---------- SERVICES ---------- */
+  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .svc{background:#fff;border-radius:22px;padding:26px 24px 24px;min-height:300px;display:flex;flex-direction:column;border:1px solid var(--line);transition:transform .3s,background .3s,color .3s}
+  .svc:hover{transform:translateY(-4px);background:var(--sage-3);color:#fff}
+  .svc:hover p,.svc:hover .num{color:rgba(255,255,255,.75)}
+  .svc .num{font-size:12px;color:var(--muted)}
+  .svc h3{font-size:24px;font-weight:500;letter-spacing:-.025em;line-height:1.15;margin:auto 0 12px}
+  .svc p{font-size:14px;color:var(--ink-2)}
+
+  /* ---------- EXPERIENCE ---------- */
+  .xp{border-top:1px solid var(--line)}
+  .xp-row .pill{justify-self:end}
+  .xp-row{display:grid;grid-template-columns:140px 1fr 1fr 130px;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line);transition:padding .25s}
+  .xp-row:hover{padding-left:12px}
+  .xp-row .yr{font-size:13px;color:var(--muted)}
+  .xp-row h4{font-size:22px;font-weight:500;letter-spacing:-.02em}
+  .xp-row .co{color:var(--ink-2)}
+  .pill{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:4px 12px;color:var(--ink-2);white-space:nowrap}
+
+  /* ---------- WORK ---------- */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+  .filters button{font-family:inherit;font-size:13px;border:1px solid var(--line);background:transparent;border-radius:99px;padding:9px 16px;cursor:pointer;color:var(--ink-2)}
+  .filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .work{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .card{grid-column:span 6;border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;transition:opacity .3s,transform .3s}
+  .card.wide{grid-column:span 12}
+  .card.third{grid-column:span 4}
+  .card.hide{display:none}
+  .thumb{position:relative;aspect-ratio:16/10;background:linear-gradient(150deg,#c9cfc6,#9aa697);overflow:hidden}
+  .card.wide .thumb{aspect-ratio:21/9}
+  .thumb .img{position:absolute;inset:0;background-size:cover;background-position:top center;transition:transform .6s}
+  .card:hover .thumb .img{transform:scale(1.04)}
+  /* designed placeholders: a browser mock (web) and a test-runner mock (QA); a real image in .img covers them */
+  .thumb::before{content:"";position:absolute;left:9%;right:9%;top:13%;bottom:-1px;border-radius:12px 12px 0 0;box-shadow:0 18px 40px rgba(30,40,30,.18);transition:transform .6s;
+    background:
+      radial-gradient(circle,#e8776c 3.5px,transparent 4px) 12px 10px/12px 12px no-repeat,
+      radial-gradient(circle,#e9c46a 3.5px,transparent 4px) 26px 10px/12px 12px no-repeat,
+      radial-gradient(circle,#8fbf8a 3.5px,transparent 4px) 40px 10px/12px 12px no-repeat,
+      linear-gradient(#e7e9e4,#e7e9e4) 0 32px/100% 1px no-repeat,
+      linear-gradient(#2b312c,#2b312c) 7% 30%/42% 9% no-repeat,
+      linear-gradient(#cfd4cc,#cfd4cc) 7% 45%/52% 4% no-repeat,
+      linear-gradient(#cfd4cc,#cfd4cc) 7% 53%/38% 4% no-repeat,
+      linear-gradient(var(--sage-3),var(--sage-3)) 7% 68%/18% 9% no-repeat,
+      linear-gradient(135deg,#b8c2b4,#7f8b7d) 93% 34%/36% 48% no-repeat,
+      #fafaf8}
+  .thumb.code::before{
+    background:
+      radial-gradient(circle,#e8776c 3.5px,transparent 4px) 12px 10px/12px 12px no-repeat,
+      radial-gradient(circle,#e9c46a 3.5px,transparent 4px) 26px 10px/12px 12px no-repeat,
+      radial-gradient(circle,#8fbf8a 3.5px,transparent 4px) 40px 10px/12px 12px no-repeat,
+      linear-gradient(#c792ea,#c792ea) 6% 22%/16% 4% no-repeat,
+      linear-gradient(#e7e9e4,#e7e9e4) 30% 22%/34% 4% no-repeat,
+      linear-gradient(#82aaff,#82aaff) 10% 33%/22% 4% no-repeat,
+      linear-gradient(#c3e88d,#c3e88d) 42% 33%/30% 4% no-repeat,
+      linear-gradient(#82aaff,#82aaff) 10% 44%/14% 4% no-repeat,
+      linear-gradient(#e7e9e4,#e7e9e4) 30% 44%/40% 4% no-repeat,
+      linear-gradient(#f78c6c,#f78c6c) 10% 55%/26% 4% no-repeat,
+      linear-gradient(#e7e9e4,#e7e9e4) 6% 66%/8% 4% no-repeat,
+      linear-gradient(#2e3a30,#2e3a30) 6% 86%/88% 14% no-repeat,
+      #1a1f1b}
+  .thumb.code::after{content:"✓  12 passed  ·  0 failed";position:absolute;left:calc(9% + 6%);bottom:9%;font:600 12px/1 ui-monospace,Menlo,monospace;color:#8fdc8a;letter-spacing:.02em}
+  .card:hover .thumb::before{transform:translateY(-6px)}
+  .thumb .img{z-index:1}
+  .thumb .ph-label{z-index:0}
+  .meta{padding:20px 22px 22px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+  .meta h3{font-size:21px;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+  .meta p{font-size:14px;color:var(--ink-2);margin-top:6px;max-width:520px}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .arrow{flex:none;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;transition:transform .3s}
+  .card:hover .arrow{transform:rotate(-45deg)}
+  /* video reel */
+  .reel{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:14px;background:var(--sage-3)}
+  .reel .v{aspect-ratio:9/16;border-radius:14px;background:linear-gradient(170deg,#a3ad9f,#566354);position:relative;overflow:hidden}
+  .reel .v .img{position:absolute;inset:0;background-size:cover;background-position:center}
+  .reel .v::after{content:"";position:absolute;left:50%;top:50%;width:34px;height:34px;transform:translate(-50%,-50%);border-radius:50%;
+    background:rgba(255,255,255,.85) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l8 5-8 5z' fill='%23111'/%3E%3C/svg%3E") center/18px no-repeat}
+
+  /* ---------- TOOLS ---------- */
+  .tools{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .tool-group{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}
+  .tool-group h4{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:13px;background:var(--paper);border-radius:99px;padding:6px 12px}
+
+  /* ---------- CERTS ---------- */
+  .certs{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .cert{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:22px;padding:12px;transition:transform .3s}
+  .cert:hover{transform:translateY(-4px)}
+  .cert img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-radius:14px;border:1px solid var(--line)}
+  .cert-body{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:16px 8px 6px}
+  .cert:hover .arrow{transform:rotate(45deg)}
+  .cert h4{font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .cert p{font-size:13px;color:var(--muted)}
+
+  /* ---------- CONTACT ---------- */
+  .contact{margin-top:80px;border-radius:var(--radius);background:linear-gradient(160deg,#5f6b5e,#2f3830);color:#fff;padding:80px 48px 40px;position:relative;overflow:hidden}
+  .contact .streaks{top:auto;bottom:30%;opacity:.5}
+  .contact h2{font-weight:500;letter-spacing:-.045em;line-height:1;font-size:clamp(44px,8vw,112px);position:relative;z-index:2}
+  .contact h2 em{font-size:1.1em}
+  .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;margin-top:56px;position:relative;z-index:2;align-items:end}
+  .links{display:grid;gap:0}
+  .links a{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.18);font-size:15px;transition:padding .25s}
+  .links a:hover{padding-left:10px}
+  .links a span{color:rgba(255,255,255,.6);font-size:13px}
+  .contact p.lead{font-weight:300;font-size:18px;color:rgba(255,255,255,.85);max-width:420px;margin-bottom:24px}
+  footer{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.55);margin-top:64px;position:relative;z-index:2}
+
+  /* placeholder marker: anything in [brackets] still needs your real info */
+  .todo{background:rgba(255,214,102,.35);border-radius:4px;padding:0 3px;width:fit-content}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:1024px){
+    .services{grid-template-columns:repeat(2,1fr)}
+    .tools{grid-template-columns:repeat(2,1fr)}
+    .about-grid{padding-left:0}
+    .card.third{grid-column:span 6}
+  }
+  @media (max-width:760px){
+    .sheet{margin:0;border-radius:0;padding:12px}
+    .nav{top:20px;gap:12px;padding:6px 6px 6px 22px}
+    .nav ul,.nav .btn{display:none}
+    .menu-btn{display:block}
+    .nav.open .menu-btn span:first-child{transform:translateY(3.25px) rotate(45deg)}
+    .nav.open .menu-btn span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+    .mobile-menu{position:fixed;inset:0;z-index:40;background:#0b0c0b;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 32px;
+      opacity:0;pointer-events:none;transition:opacity .3s}
+    .mobile-menu.open{opacity:1;pointer-events:auto}
+    .mobile-menu a{font-size:44px;letter-spacing:-.04em;font-weight:500}
+    .mobile-menu a em{font-size:1.1em}
+    .hero{min-height:auto}
+    .hero-inner{grid-template-columns:1fr;padding:130px 22px 22px;gap:28px}
+    .plus{display:none}
+    .hero-copy{margin-top:28px}
+    .hero-side{align-items:stretch}
+    .hero-side .stack{justify-content:flex-end}
+    .side-cap{text-align:right}
+    .glass{width:100%}
+    .glass .row{margin-top:70px}
+    .photo-card img{aspect-ratio:4/3.4}
+    .photo-card .row{margin-top:18px}
+    section{padding:80px 0 20px}
+    .wrap{padding:0 8px}
+    .head-row{grid-template-columns:1fr;gap:16px;margin-bottom:36px}
+    .quote{text-align:left}
+    .about-grid{grid-template-columns:1fr;margin-top:36px}
+    .services,.tools,.certs{grid-template-columns:1fr}
+    .svc{min-height:220px}
+    .xp-row{grid-template-columns:1fr auto;gap:4px 12px}
+    .xp-row .yr{grid-column:1/-1}
+    .xp-row .co{grid-column:1}
+    .xp-row .pill{grid-row:2;grid-column:2}
+    .card,.card.third,.card.wide{grid-column:span 12}
+    .card.wide .thumb{aspect-ratio:16/10}
+    .reel{grid-template-columns:repeat(3,1fr)}
+    .contact{padding:56px 22px 28px;margin-top:56px}
+    .contact-grid{grid-template-columns:1fr}
+    footer{flex-direction:column;gap:6px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <a href="#top" class="logo">anthony<sup>®</sup></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+  </ul>
+  <a href="#contact" class="btn">Contact me</a>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#work"><em>Work</em></a>
+  <a href="#experience">Experience</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<div class="sheet" id="top">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="streaks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <span class="plus" style="left:8%">+</span><span class="plus" style="left:31%">+</span>
+    <span class="plus" style="left:54%">+</span>
+
+    <div class="hero-inner">
+      <div>
+        <h1 class="wordmark">anthony<sup>®</sup></h1>
+        <span class="tag">tests · automates · ships</span>
+        <p class="hero-copy"><b>—</b> QA engineer with 8+ years making sure software works. Playwright automation, end-to-end and regression testing — plus the GHL funnels and UGC content that help products grow.</p>
+      </div>
+      <div class="hero-side">
+        <div class="stack" aria-hidden="true"><span>QA</span><span>E2E</span><span>GHL</span><span>UGC</span></div>
+        <span class="side-cap">8+ years in QA · remote teams</span>
+        <div class="glass photo-card">
+          <img src="assets/anthony.png" alt="Anthony Desamparado" width="432" height="421">
+          <div class="row"><small>Available for projects</small><a href="#contact" class="btn dark">Let’s chat</a></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="head-row rv">
+        <span class="eyebrow">About me</span>
+        <h2 class="h-big quote">“I don’t just find bugs — I <em>automate</em> the checks, <em>protect</em> every release, and <em>build</em> what helps it grow.”</h2>
+      </div>
+      <div class="about-grid rv">
+        <div class="portrait">
+          <img src="assets/anthony.png" alt="Anthony Desamparado smiling, arms crossed" loading="lazy">
+        </div>
+        <div class="about-text">
+          <p>I’m a QA engineer with 8+ years of experience — from manual store testing at Piggy (acquired by Klarna) to Playwright test automation for remote teams at Theoria Medical and Project Assistant.</p>
+          <p>I write reliable end-to-end tests, run regression and cross-browser checks, and report bugs clearly so teams can ship with confidence. Alongside QA, I build GoHighLevel websites, funnels and CRM automations and edit short-form UGC video — so I understand the product side as well as the testing side.</p>
+          <p>With a background in Meta ads management and user-experience optimisation, I focus on clean, efficient work that supports real business growth.</p>
+          <div class="stats">
+            <div class="stat"><b>8+</b><span>Years in QA</span></div>
+            <div class="stat"><b>5</b><span>Teams shipped with</span></div>
+            <div class="stat"><b>2</b><span>Certifications</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="head-row rv">
+        <span class="eyebrow">What I do</span>
+        <h2 class="h-big"><em>Quality</em> first — then everything around it.</h2>
+      </div>
+      <div class="services rv">
+        <article class="svc"><span class="num">01</span><h3>QA &amp; test automation</h3><p>Playwright end-to-end suites, cross-browser runs on Sauce Labs and tests that fit into your CI.</p></article>
+        <article class="svc"><span class="num">02</span><h3>Manual &amp; regression testing</h3><p>Exploratory, functional and regression testing with clear, reproducible bug reports.</p></article>
+        <article class="svc"><span class="num">03</span><h3>GHL websites &amp; funnels</h3><p>GoHighLevel and Lovable builds, CRM pipelines and automations — tested before they launch.</p></article>
+        <article class="svc"><span class="num">04</span><h3>UGC &amp; AI video</h3><p>Short-form UGC edits and AI creatives built for Reels, TikTok and paid social.</p></article>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <div class="head-row rv">
+        <span class="eyebrow">Selected work</span>
+        <h2 class="h-big">Recent projects, <em>real</em> results.</h2>
+      </div>
+
+      <div class="filters rv" role="tablist" aria-label="Filter projects">
+        <button class="on" data-f="all">All</button>
+        <button data-f="qa">QA automation</button>
+        <button data-f="web">Websites &amp; funnels</button>
+        <button data-f="video">Video &amp; UGC</button>
+      </div>
+
+      <div class="work rv">
+        <!-- QA -->
+        <a class="card" data-cat="qa" href="https://github.com/tonyingstark/saucelabs_automated_tests" target="_blank" rel="noopener">
+          <div class="thumb code"><div class="img" style="background-image:url('assets/work/saucelabs.jpg')"></div></div>
+          <div class="meta"><div><h3>Sauce Labs Playwright Automation</h3><p>End-to-end Playwright suite running cross-browser on Sauce Labs. View the code on GitHub.</p><div class="tags"><span class="pill">Playwright</span><span class="pill">Sauce Labs</span><span class="pill">GitHub</span></div></div><span class="arrow">↗</span></div>
+        </a>
+        <a class="card" data-cat="qa" href="https://github.com/tonyingstark/pw_test_helloprint" target="_blank" rel="noopener">
+          <div class="thumb code"><div class="img" style="background-image:url('assets/work/helloprint.jpg')"></div></div>
+          <div class="meta"><div><h3>HelloPrint Playwright Automation</h3><p>Automated checkout and product-flow tests for an e-commerce print shop. View the code on GitHub.</p><div class="tags"><span class="pill">Playwright</span><span class="pill">E2E</span><span class="pill">GitHub</span></div></div><span class="arrow">↗</span></div>
+        </a>
+
+        <!-- VIDEO -->
+        <div class="card wide" data-cat="video">
+          <div class="reel">
+            <div class="v"><div class="img" style="background-image:url('assets/ugc/1.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ugc/2.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ugc/3.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ugc/4.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ugc/5.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ugc/6.jpg')"></div></div>
+          </div>
+          <div class="meta"><div><h3>Short-form video &amp; UGC</h3><p>Hook-first edits for product, beauty and lifestyle brands — captions, pacing and sound design for Reels and TikTok.</p><div class="tags"><span class="pill">UGC</span><span class="pill">Reels</span><span class="pill">TikTok</span></div></div></div>
+        </div>
+
+        <!-- WEB -->
+        <article class="card third" data-cat="web">
+          <div class="thumb"><div class="img" style="background-image:url('assets/work/ghl-1.jpg')"></div></div>
+          <div class="meta"><div><h3>GHL Business Website</h3><p>GoHighLevel website with lead capture</p></div><span class="arrow">→</span></div>
+        </article>
+        <article class="card third" data-cat="web">
+          <div class="thumb"><div class="img" style="background-image:url('assets/work/ghl-2.jpg')"></div></div>
+          <div class="meta"><div><h3>GHL Sales Funnel</h3><p>GoHighLevel funnel &amp; booking flow</p></div><span class="arrow">→</span></div>
+        </article>
+        <article class="card third" data-cat="web">
+          <div class="thumb"><div class="img" style="background-image:url('assets/work/lovable-1.jpg')"></div></div>
+          <div class="meta"><div><h3>Lovable Website Build</h3><p>AI-assisted website built in Lovable</p></div><span class="arrow">→</span></div>
+        </article>
+        <article class="card" data-cat="web">
+          <div class="thumb"><div class="img" style="background-image:url('assets/work/lovable-2.jpg')"></div></div>
+          <div class="meta"><div><h3>Lovable Funnel Build</h3><p>Landing page &amp; funnel built in Lovable</p><div class="tags"><span class="pill">Lovable</span><span class="pill">Funnel</span></div></div><span class="arrow">→</span></div>
+        </article>
+        <article class="card" data-cat="web">
+          <div class="thumb"><div class="img" style="background-image:url('assets/work/web-1.jpg')"></div></div>
+          <div class="meta"><div><h3>Responsive Web Design</h3><p>Website design for desktop &amp; mobile</p><div class="tags"><span class="pill">Web design</span><span class="pill">Responsive</span></div></div><span class="arrow">→</span></div>
+        </article>
+
+        <!-- AI -->
+        <div class="card wide" data-cat="video">
+          <div class="reel">
+            <div class="v"><div class="img" style="background-image:url('assets/ai/1.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ai/2.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ai/3.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ai/4.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ai/5.jpg')"></div></div>
+            <div class="v"><div class="img" style="background-image:url('assets/ai/6.jpg')"></div></div>
+          </div>
+          <div class="meta"><div><h3>AI creatives</h3><p>AI-assisted ad creatives and product visuals, edited for paid social.</p><div class="tags"><span class="pill">AI video</span><span class="pill">Ads</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="head-row rv">
+        <span class="eyebrow">Experience</span>
+        <h2 class="h-big">Where I’ve <em>worked</em>.</h2>
+      </div>
+      <div class="xp rv">
+        <div class="xp-row"><span class="yr">2025 — Present</span><h4>GHL Specialist / UGC Video Editor</h4><span class="co">RevAIBox</span><span class="pill">Freelance</span></div>
+        <div class="xp-row"><span class="yr">2024 — Present</span><h4>QA Tester</h4><span class="co">Project Assistant</span><span class="pill">Remote</span></div>
+        <div class="xp-row"><span class="yr">2023 — 2024</span><h4>QA Engineer</h4><span class="co">Theoria Medical</span><span class="pill">Remote</span></div>
+        <div class="xp-row"><span class="yr">2022 — 2023</span><h4>QA Analyst, Manual Level II</h4><span class="co">Seven Seven Global Services Inc.</span><span class="pill">Remote</span></div>
+        <div class="xp-row"><span class="yr">2018 — 2022</span><h4>Manual Store QA Analyst</h4><span class="co">Piggy (acquired by Klarna)</span><span class="pill">Remote / Onsite</span></div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section id="tools">
+      <div class="head-row rv">
+        <span class="eyebrow">Toolkit</span>
+        <h2 class="h-big">The <em>stack</em> behind the work.</h2>
+      </div>
+      <div class="tools rv">
+        <div class="tool-group"><h4>Websites &amp; CRM</h4><div class="chips"><span class="chip">GoHighLevel</span><span class="chip">Lovable</span><span class="chip">WordPress</span><span class="chip">Canva Sites</span></div></div>
+        <div class="tool-group"><h4>QA &amp; testing</h4><div class="chips"><span class="chip">Playwright</span><span class="chip">Sauce Labs</span><span class="chip">GitHub</span><span class="chip">Postman</span></div></div>
+        <div class="tool-group"><h4>Video &amp; design</h4><div class="chips"><span class="chip">CapCut</span><span class="chip">Premiere Pro</span><span class="chip">Canva</span><span class="chip">Figma</span></div></div>
+        <div class="tool-group"><h4>AI &amp; productivity</h4><div class="chips"><span class="chip">ChatGPT</span><span class="chip">Claude</span><span class="chip">Notion</span><span class="chip">ClickUp</span></div></div>
+      </div>
+    </section>
+
+    <!-- CERTS -->
+    <section id="certs">
+      <div class="head-row rv">
+        <span class="eyebrow">Certifications</span>
+        <h2 class="h-big">Always <em>learning</em>.</h2>
+      </div>
+      <div class="certs rv">
+        <a class="cert" href="https://ude.my/UC-edfd03fc-a630-48be-b1f1-fa54c3464244" target="_blank" rel="noopener">
+          <img src="assets/certs/udemy-playwright.jpg" alt="Udemy certificate: Playwright Web Automation Testing From Zero to Hero" loading="lazy">
+          <div class="cert-body"><div><h4>Playwright: Web Automation Testing From Zero to Hero</h4><p>Udemy · Artem Bondar · Sept 2024 · 12.5 hrs</p></div><span class="arrow">↗</span></div>
+        </a>
+        <a class="cert" href="https://coursera.org/verify/professional-cert/3BQ8JC84UGCL" target="_blank" rel="noopener">
+          <img src="assets/certs/google-data-analytics.jpg" alt="Google Data Analytics Professional Certificate" loading="lazy">
+          <div class="cert-body"><div><h4>Google Data Analytics Professional Certificate</h4><p>Google · Coursera · Jan 2023 · 8 courses</p></div><span class="arrow">↗</span></div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact" id="contact">
+    <div class="streaks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <span class="eyebrow" style="color:rgba(255,255,255,.75);position:relative;z-index:2">Get in touch</span>
+    <h2 style="margin-top:20px">Let’s ship <em>something</em><br>that works.</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="lead">Need your tests automated, a release you can trust, or a funnel built and checked? I reply within a day.</p>
+        <a href="mailto:desamparadoanthony@gmail.com" class="btn">Email me →</a>
+      </div>
+      <div class="links">
+        <a href="mailto:desamparadoanthony@gmail.com">Email <span>desamparadoanthony@gmail.com</span></a>
+        <a href="tel:+639939815285">Phone <span>+63 993 981 5285</span></a>
+        <a href="https://www.linkedin.com/in/anthony-desamparado-bb959516a/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a>
+        <a href="https://github.com/tonyingstark" target="_blank" rel="noopener">GitHub <span>@tonyingstark ↗</span></a>
+        <a href="https://drive.google.com/file/d/1GoRSdleYeSStJNsx7h0dpdoLx5BPMfkj/view?usp=sharing" target="_blank" rel="noopener">Résumé <span>View ↗</span></a>
+      </div>
+    </div>
+    <footer><span>© 2026 Anthony Desamparado</span><span>QA Automation · GHL · UGC</span></footer>
+  </div>
+
+</div>
+
+<script>
+  // mobile menu
+  const nav=document.getElementById('nav'),btn=document.getElementById('menuBtn'),mm=document.getElementById('mobileMenu');
+  const toggle=(open)=>{nav.classList.toggle('open',open);mm.classList.toggle('open',open);btn.setAttribute('aria-expanded',open);document.body.style.overflow=open?'hidden':''};
+  btn.addEventListener('click',()=>toggle(!mm.classList.contains('open')));
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggle(false)));
+
+  // project filters
+  document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));
+    const f=b.dataset.f;
+    document.querySelectorAll('.work .card').forEach(c=>c.classList.toggle('hide',f!=='all'&&c.dataset.cat!==f));
+  }));
+
+  // reveal on scroll
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
